@@ -51,15 +51,15 @@ fn fn_2_2_1() {
         println!("未定义的数学行为")
     }
     for i in 1..=5 {
-        println!("{}",i);
+        println!("{}", i);
     }
     for i in 'a'..'f' {
-        println!("{}",i);
+        println!("{}", i);
     }
     let a = Complex { re: 2.1, im: -1.2 };
     let b = Complex::new(11.1, 22.2);
     let result = a + b;
- 
+
     println!("{} + {}i", result.re, result.im);
 
     println!("13.14_f32.round() {}", 13.14_f32.round());
@@ -69,6 +69,77 @@ fn fn_2_2_1() {
     println!("w_0 + w_1 = {}", w_0 + w_1);
 }
 
+fn fn_2_2_2() {
+    let x = '中';
+    println!("字符'中'占用了{}字节的内存大小", std::mem::size_of_val(&x));
+
+    let t = true;
+
+    let f: bool = false; // 使用类型标注,显式指定f的类型
+
+    if f {
+        println!("这是段毫无意义的代码");
+    }
+    println!(
+        "布尔值 false 占用了{}字节的内存大小",
+        std::mem::size_of_val(&f)
+    );
+
+    let u = ();
+    println!(
+        "单元类型 () 占用了{}字节的内存大小",
+        std::mem::size_of_val(&u)
+    );
+}
+
+fn fn_2_2_3() {
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("The value of y is: {}", y);
+
+    let z = {
+        let x = 18;
+    };
+    println!("The value of z is: {:?}", z);
+}
+
+fn fn_2_2_4() {
+    let x = plus_or_minus(6);
+
+    println!("The value of x is: {}", x);
+
+    // dead_end();
+    forever();
+}
+
+fn plus_five(x: i32) -> i32 {
+    x + 5
+}
+
+fn plus_or_minus(x: i32) -> i32 {
+    if x > 5 {
+        return x - 5;
+    }
+
+    x + 5
+}
+
+fn dead_end() -> ! {
+    panic!("你已经到了穷途末路，崩溃吧！");
+}
+
+fn forever() -> ! {
+    loop {
+        //...
+    }
+}
+
 fn main() {
-    fn_2_2_1();
+    // fn_2_2_1();
+    // fn_2_2_2();
+    // fn_2_2_3();
+    fn_2_2_4();
 }
