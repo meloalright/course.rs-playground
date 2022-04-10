@@ -89,3 +89,27 @@ fn main() {
 // >> 链表的长度是: 4
 // >> 15, 3, 2, 1, Nil
 ```
+
+### Option<T>
+
+```rust
+// 修复代码中的错误
+fn main() {
+    let names = [String::from("Sunfei"), "Sunface".to_string()];
+    
+    // `get` 返回 `Option<T>` 类型，因此它的使用非常安全
+    let _name0 = names.get(0).unwrap();
+
+    // 但是下标索引就存在越界的风险了
+    let _name1 = match names.get(1) {
+        None => {
+            println!("None!")
+        },
+        Some(i) => {
+            println!("i = {}", i)
+        }
+    };
+}
+
+// >> i = Sunface
+```
