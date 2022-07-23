@@ -70,3 +70,19 @@ fn main() {
 } 
 ```
 
+## 匹配守卫
+
+```rust
+let x = Some(5);
+let y = 10;
+
+match x {
+    Some(50) => println!("Got 50"),
+    Some(n) if n == y /* 箭头之前可以各种加模式判断用于守卫 */=> println!("Matched, n = {}", n),
+    _ => println!("Default case, x = {:?}", x),
+}
+
+println!("at the end: x = {:?}, y = {}", x, y);
+// Default case, x = Some(5)
+// at the end: x = Some(5), y = 10
+```
